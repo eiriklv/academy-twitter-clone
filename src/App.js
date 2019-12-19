@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from './containers/Login';
+import Signup from './containers/Signup';
+import Authenticate from './containers/Authenticate';
+import Feed from './containers/Feed';
+import User from './containers/User';
+import Logout from './containers/Logout';
+
+import withAuthentication from './hocs/withAuthentication';
+
+class App extends React.Component {
+  render() {
+    return (
+      <HashRouter>
+        <Switch>
+          <Route path="/" exact component={Authenticate} />
+          <Route path="/home" component={withAuthentication(Feed)} />
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/:handle" component={withAuthentication(User)} />
+        </Switch>
+      </HashRouter>
+    );
+  }
 }
 
 export default App;
