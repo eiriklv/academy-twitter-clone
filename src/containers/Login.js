@@ -66,7 +66,7 @@ class Login extends React.Component {
 
     return (
       <div style={{ textAlign: 'center' }}>
-        <h1>Login</h1>
+        <h1>Login (test)</h1>
         <form>
           <div>
             <label>
