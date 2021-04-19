@@ -81,7 +81,7 @@ api.post('/session', async function (req, res) {
       id: user.id,
       handle: user.handle,
       name: user.name
-    }, new Buffer(secret, 'base64'));
+    }, Buffer.from(secret, 'base64'));
 
     res.send({
       token: token
@@ -97,7 +97,7 @@ function authenticate(req, res, next) {
   try {
     const { id, name, handle } = jwt.verify(
       token,
-      new Buffer(secret, 'base64')
+      Buffer.from(secret, 'base64')
     );
 
     req.user = { id, name, handle };
@@ -125,5 +125,5 @@ api.get('/tweets', async function (req, res) {
 app.use('/api', api);
 
 app.listen(port, () => {
-  console.log('Twitter API running on http://localhost:3333');
+  console.log(`Twitter API running on http://localhost:${port}`);
 });

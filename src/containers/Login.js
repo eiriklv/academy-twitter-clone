@@ -40,7 +40,10 @@ class Login extends React.Component {
     } = this.state;
 
     try {
-      const { token, error } = await createSession({ handle, password });
+      const {
+        token,
+        error,
+      } = await createSession({ handle, password });
 
       if (error) {
         throw new Error(error);
@@ -71,13 +74,21 @@ class Login extends React.Component {
           <div>
             <label>
               Handle:
-              <input type="text" value={loginForm.handle} onChange={this.handleInputChange.bind(this, 'handle')} />
+              <input
+                type="text"
+                value={loginForm.handle}
+                onChange={this.handleInputChange.bind(this, 'handle')}
+              />
             </label>
           </div>
           <div>
             <label>
               Password:
-              <input type="password" value={loginForm.password} onChange={this.handleInputChange.bind(this, 'password')} />
+              <input
+                type="password"
+                value={loginForm.password}
+                onChange={this.handleInputChange.bind(this, 'password')}
+              />
             </label>
           </div>
           <div>
